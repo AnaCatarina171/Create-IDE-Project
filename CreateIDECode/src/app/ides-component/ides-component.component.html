@@ -1,0 +1,50 @@
+<!--
+    Ana Silva
+    ITPA
+    2022-01-08
+-->
+
+<!-- Show the search area if the search phrase has been entered of the ide length is greater than zero>-->
+<div class="body">
+    <div class="search-container" *ngIf="searchPhrase || ides.length > 0">
+        IDE Company Search: <input type="text" class="search-ide" [(ngModel)]="searchPhrase"> 
+        <button (click)="search()" class="btn btn-primary">Search</button>
+    </div>
+    
+    <h2 class="text-center" *ngIf="message">{{message}}</h2>
+    
+    <!--show only if the search as been populated and the ide length is zero>-->
+    <div class="text-center" *ngIf="searchPhrase && ides.length == 0">
+        <a class="btn btn-primary" href="/ides">Get all IDEs</a>
+    </div>
+    
+    <!--Show only if the ide length is greater than zero -->
+    <div class="card-container" *ngIf="ides.length > 0">
+        <!-- Iterate through the IDEs to produce the bootstrap cards -->
+        <div class="row">
+            <div *ngFor="let ide of ides">
+                <div class="col-md-4 card">  
+                    <div class="card-header">
+                        <h4>{{ide.name}}</h4>
+                    </div>      
+                    <div class="card-body">
+                        <h4>{{ide.name}} was initially released in {{ide.initialReleaseYear}} and maintained by {{ide.company}}</h4>
+                        <!--Only show if there is a description -->
+                        <p *ngIf="ide.description">
+                            About {{ide.name}}<br />
+                           {{ide.description}}
+                        </p>
+            
+                        <!-- Show only if there is a logo -->
+                        <div class="text-center" *ngIf="ide.logo">
+                            <img src="{{ide.logo}}" class="logo-in-card" alt="">
+                        </div>
+            
+                        <!--Set the link to show the IDEDetail Component for the chosen IDE -->
+                        <a class="btn btn-primary mt-2" href="/ide/{{ide.id}}">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

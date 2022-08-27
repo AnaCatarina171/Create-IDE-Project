@@ -1,0 +1,12 @@
+a,
+a:hover,
+a:visited{
+    text-decoration: none;
+}
+a,
+a:visited{
+    color:rgb(180, 180, 180);
+}
+a:hover{
+    color: rgb(80, 79, 79);
+}

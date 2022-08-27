@@ -1,0 +1,20 @@
+.card-body{
+    padding:60px;
+}
+input,textarea{
+    width:400px;    
+}
+
+.err{
+    padding-left: 5px;
+    color:red;
+    cursor: pointer;
+}
+
+img.logo-in-form{
+    height: 100px;
+}
+.card-container{
+    width: 600px;
+    margin: auto;
+}

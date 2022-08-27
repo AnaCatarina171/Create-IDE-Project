@@ -1,0 +1,108 @@
+<h2 class="text-center red" *ngIf="message">{{message}}</h2>
+<div class="card-container" *ngIf="!message">
+    <div class="card">  
+        <div class="card-header" *ngIf="!name.value">
+            <h2>Create new IDE</h2>
+        </div> 
+        <div class="card-header" *ngIf="name.value">
+            <h2>{{name.value}}</h2>
+        </div>     
+        <div class="card-body">
+            <!-- SET up form -->
+            <form autocomplete="off" #ideForm="ngForm" (ngSubmit)="onFormSubmit(ideForm)">
+                <div style="display: none;">
+                    <input type="text" name="id" [(ngModel)]="ide.id" class="form-control">
+                </div>
+                <div>                    
+                    <label>Name:<br />
+                        <input     
+                        name="name"   
+                        #name="ngModel"
+                        required
+                        minlength="4"
+                        [(ngModel)]="ide.name"              
+                        class="form-control" 
+                       ></label>
+                        <i 
+                        *ngIf="(name?.errors?.required || name?.errors?.minlength)
+                                && ideForm.submitted && !isValidFormSubmitted"
+                                [attr.title]="name?.errors?.required
+                                ? 'IDE name is required'
+                                : name?.errors?.minlength
+                                ? 'IDE name minimum length is 4' : ''"
+                        class="fas fa-exclamation-circle err" ></i>
+                </div>
+                <div>                    
+                    <label>Company:<br />
+                        <input             
+                        name="company"   
+                        #company="ngModel"
+                        required
+                        minlength="5"
+                        [(ngModel)]="ide.company"             
+                        class="form-control" 
+                       ></label>
+                        <i 
+                        *ngIf="(company?.errors?.required || company?.errors?.minlength)
+                                && ideForm.submitted && !isValidFormSubmitted"
+                                [attr.title]="company?.errors?.required
+                                ? 'Company name is required'
+                                : company?.errors?.minlength
+                                ? 'Company name minimum length is 5' : ''"
+                        class="fas fa-exclamation-circle err"></i>
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                        <textarea                        
+                        name="description"   
+                        #description="ngModel"
+                        [(ngModel)]="ide.description"              
+                        class="form-control" 
+                        ></textarea>
+                </div>
+                <div>                    
+                    <label>Initial Release:<br />
+                        <input 
+                        type="number"                       
+                        name="initialReleaseYear"   
+                        #initialReleaseYear="ngModel"
+                        required
+                        min = "1980"
+                        [max] = "currentYear"
+                        [(ngModel)]="ide.initialReleaseYear"              
+                        class="form-control"                        
+                        ></label>
+                        <i 
+                        *ngIf="(initialReleaseYear?.errors?.required || initialReleaseYear?.errors?.min || initialReleaseYear?.errors?.max)
+                                && ideForm.submitted && !isValidFormSubmitted"
+                                [attr.title]="initialReleaseYear?.errors?.required
+                                ? 'Release year is required'
+                                : initialReleaseYear?.errors?.min
+                                ? 'Minimum release year is 1980'
+                                : initialReleaseYear?.errors?.max
+                                ? 'Maximum release year is ' + currentYear : ''"
+                        class="fas fa-exclamation-circle err"></i>
+                </div>
+                <div>                    
+                    <label>Logo:<br />
+                        <input                        
+                        name="logo"   
+                        #logo="ngModel"
+                        [(ngModel)]="ide.logo"              
+                        class="form-control"  
+                        ></label>                   
+                </div>
+                <!--Show div only of there is an image -->
+                <div class="text-center pt-2" *ngIf="logo.value != ''">
+                    <img [src]="logo.value" class="logo-in-form" alt="">
+                </div>
+                <div class="pt-2">
+                    <button class="btn btn-primary">Save</button>
+                </div>                
+            </form>
+            <div *ngIf="savedMessage">
+               {{savedMessage}}
+            </div>    
+        </div>
+    </div>
+</div>
