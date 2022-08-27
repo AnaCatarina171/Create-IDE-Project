@@ -17,8 +17,19 @@ img.logo-in-card{
 
 .search-container{
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .card{
-    margin: 0;
+    margin: 20px;
+}
+
+.card-container{
+    text-align: center;
+    margin: auto;
+    width: 500px;
+}
+
+.btn-primary{
+    margin: 5px;
 }

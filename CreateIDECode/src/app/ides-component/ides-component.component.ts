@@ -40,4 +40,10 @@ export class IDEsComponent implements OnInit {
         this.message = "No IDEs are created."
     }
   }
+
+  public deleteIDE(index:number): void {
+    this.ideService.deleteIDE(index);
+
+    window.location.reload();
+  }
 }

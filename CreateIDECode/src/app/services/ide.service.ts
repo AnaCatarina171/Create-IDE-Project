@@ -120,4 +120,14 @@ export class IDEService {
 
     return of(query);
   }
+
+  /**
+   * delete a specific IDE
+   * @param index index of the selected IDE
+   */
+     deleteIDE(index:number) : void {
+      this.ides.splice(index, 1);
+  
+      localStorage.setItem('ides', JSON.stringify(this.ides));
+    }
 }
